@@ -16,10 +16,10 @@ let startWeekDay = dayjs(new Date(year, month, -1, 1));
 
 console.log(`${month}月 ${year}`.padStart(13));
 console.log(weeks.join(" "));
-process.stdout.write("  ".repeat(startWeekDay.day()));
+process.stdout.write("   ".repeat(startWeekDay.day()));
 
 for (let i = 1; i <= lastDay.date(); i++) {
-  process.stdout.write(` ${i} `);
+  process.stdout.write(`${i}`.padStart(3));
   if (startWeekDay.date(i).day() === 6 || i === lastDay.date()) {
     process.stdout.write("\n");
   }

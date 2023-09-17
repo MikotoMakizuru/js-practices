@@ -26,4 +26,5 @@ db.each("SELECT * FROM books", (err, row) => {
   }
 });
 
-db.close();
+await timers.setTimeout(100);
+db.run("DROP TABLE books");

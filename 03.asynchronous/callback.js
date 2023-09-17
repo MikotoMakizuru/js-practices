@@ -17,4 +17,6 @@ await timers.setTimeout(100);
 db.each("SELECT * FROM books", (err, row) => {
   console.log(`${row.id} ${row.title}`);
 });
-db.close();
+
+await timers.setTimeout(100);
+db.run("DROP TABLE books");

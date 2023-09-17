@@ -1,8 +1,7 @@
 import sqlite3 from "sqlite3";
 
-var db = new sqlite3.Database(":memory:");
-
-function main(db) {
+function main() {
+  var db = new sqlite3.Database(":memory:");
   return new Promise((resolve) => {
     db.run(
       "CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)"
@@ -30,4 +29,4 @@ function main(db) {
   });
 }
 
-main(db);
+main();

@@ -24,7 +24,7 @@ function main() {
     }, 200);
 
     setTimeout(() => {
-      db.close();
+      db.run("DROP TABLE books");
     }, 300);
   });
 }

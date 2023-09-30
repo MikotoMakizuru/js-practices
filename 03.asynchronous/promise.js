@@ -1,6 +1,6 @@
 import sqlite3 from "sqlite3";
 
-function main() {
+export function main() {
   var db = new sqlite3.Database(":memory:");
   return new Promise((resolve) => {
     db.run(
@@ -17,7 +17,7 @@ function main() {
     }, 100);
 
     setTimeout(() => {
-      db.each("SELECT * FROM books", (err, row) => {
+      db.each("SELECT * FROM books", (error, row) => {
         console.log(`${row.id} ${row.title}`);
       });
       resolve();

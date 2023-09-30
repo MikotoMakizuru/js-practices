@@ -1,4 +1,3 @@
-import timers from "timers/promises";
 import sqlite3 from "sqlite3";
 
 const db = new sqlite3.Database(":memory:");
@@ -27,9 +26,12 @@ const deleteTable = () => {
 };
 
 createTable();
-await timers.setTimeout(100);
-insertRecord();
-await timers.setTimeout(100);
-outputDisplayTitle();
-await timers.setTimeout(100);
-deleteTable();
+setTimeout(function () {
+  insertRecord();
+  setTimeout(function () {
+    outputDisplayTitle();
+    setTimeout(function () {
+      deleteTable();
+    }, 100);
+  }, 100);
+}, 100);

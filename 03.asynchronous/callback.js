@@ -5,7 +5,7 @@ const db = new sqlite3.Database(":memory:");
 
 const createTable = () => {
   db.run(
-    "CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)"
+    "CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   );
 };
 

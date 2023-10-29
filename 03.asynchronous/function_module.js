@@ -37,9 +37,8 @@ function outputTitleDisplay() {
       if (error) {
         reject(error);
       } else {
-        console.log(`${row.id} ${row.title}`);
+        resolve(console.log(`${row.id} ${row.title}`));
       }
-      resolve();
     });
   });
 }

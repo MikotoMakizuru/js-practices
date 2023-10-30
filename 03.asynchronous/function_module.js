@@ -6,9 +6,7 @@ function createTable() {
   return new Promise((resolve) => {
     db.run(
       "CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
-      () => {
-        resolve();
-      }
+      () => resolve()
     );
   });
 }
@@ -45,9 +43,7 @@ function outputTitleDisplay() {
 
 function deleteTable() {
   return new Promise((resolve) => {
-    db.run("DROP TABLE books", () => {
-      resolve();
-    });
+    db.run("DROP TABLE books", () => resolve());
   });
 }
 

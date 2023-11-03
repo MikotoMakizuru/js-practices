@@ -8,10 +8,13 @@ db.run(
 );
 
 await timers.setTimeout(100);
-const title = db.prepare("INSERT INTO books (title) VALUES (?)");
-for (let i = 0; i < 5; i++) {
-  title.run("タイトル" + i);
-}
+db.run("INSERT INTO books (title) VALUES (?)", "ゼロからわかるRuby超入門");
+
+await timers.setTimeout(100);
+db.run(
+  "INSERT INTO books (title) VALUES (?)",
+  "プロを目指す人のためのRuby入門",
+);
 
 await timers.setTimeout(100);
 db.all("SELECT * FROM books", (error, rows) => {

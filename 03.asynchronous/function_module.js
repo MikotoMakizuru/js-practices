@@ -6,7 +6,7 @@ function createTable() {
   return new Promise((resolve) => {
     db.run(
       "CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
-      () => resolve()
+      () => resolve(),
     );
   });
 }
@@ -21,7 +21,7 @@ function insertRecord() {
         } else {
           resolve();
         }
-      }
+      },
     );
     // コールバック同様for文で書こうと思いましたが、5件出力できないので断念。
     title.run("本のタイトル");

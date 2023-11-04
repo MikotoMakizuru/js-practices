@@ -11,4 +11,7 @@ db_operation_function
     console.log("本のタイトルの追加に失敗（プロを目指す人のためのRuby入門）");
   })
   .then(() => db_operation_function.outputTitleDisplay())
+  .catch(() => {
+    console.log("本のタイトルの表示に失敗");
+  })
   .then(() => db_operation_function.deleteTable());

@@ -9,12 +9,12 @@ db.run(
       "INSERT INTO books (title) VALUES (?)",
       "ゼロからわかるRuby超入門",
       function () {
-        console.log(`ID:${this.lastID}`);
+        console.log(`ID: ${this.lastID}`);
         db.run(
           "INSERT INTO books (title) VALUES (?)",
           "プロを目指す人のためのRuby入門",
           function () {
-            console.log(`ID:${this.lastID}`);
+            console.log(`ID: ${this.lastID}`);
             db.all("SELECT * FROM books", (_error, rows) => {
               rows.forEach((row) => console.log(`${row.id} ${row.title}`));
             }),

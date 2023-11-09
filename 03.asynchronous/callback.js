@@ -17,8 +17,8 @@ db.run(
             console.log(`ID: ${this.lastID}`);
             db.all("SELECT * FROM books", (_error, rows) => {
               rows.forEach((row) => console.log(`${row.id} ${row.title}`));
+              db.run("DROP TABLE books");
             });
-            db.run("DROP TABLE books");
           },
         );
       },

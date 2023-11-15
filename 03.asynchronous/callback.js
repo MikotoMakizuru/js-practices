@@ -19,9 +19,9 @@ db.run(
               rows.forEach((row) => console.log(`${row.id} ${row.title}`));
               db.run("DROP TABLE books");
             });
-          },
+          }
         );
-      },
+      }
     );
-  },
+  }
 );

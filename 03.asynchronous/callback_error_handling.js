@@ -10,11 +10,11 @@ db.run(
       "JavaScript Primer 迷わないための入門",
       (error) => {
         if (error) {
-          console.log("追加", error.message);
+          console.error("追加", error.message);
         }
         db.all("SELECT * FROM booka", (error) => {
           if (error) {
-            console.log("取得", error.message);
+            console.error("取得", error.message);
             db.run("DROP TABLE books");
           }
         });

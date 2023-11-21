@@ -1,17 +1,20 @@
 import * as db_operation_function from "./function_module.js";
 
+const createTableSql =
+  "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)";
+const insertRecordSql = "INSERT INTO book (title) VALUES (?)";
+const booksTitle = "JavaScript Primer 迷わないための入門";
+const selectDataSql = "SELECT * FROM booka";
+const deleteTableSql = "DROP TABLE books";
+
 db_operation_function
-  .createTable()
-  .then(() => db_operation_function.insertBookTitleZeroRuby())
-  .catch(() => {
-    console.log("本のタイトルの追加に失敗（ゼロからわかるRuby超入門）");
+  .createTable(createTableSql)
+  .then(() => db_operation_function.insertRecord(insertRecordSql, booksTitle))
+  .catch((error) => {
+    console.error("追加", error.message);
   })
-  .then(() => db_operation_function.insertBookTitleCherryBook())
-  .catch(() => {
-    console.log("本のタイトルの追加に失敗（プロを目指す人のためのRuby入門）");
+  .then(() => db_operation_function.selectData(selectDataSql))
+  .catch((error) => {
+    console.error("取得", error.message);
   })
-  .then(() => db_operation_function.outputTitleDisplay())
-  .catch(() => {
-    console.log("本のタイトルの表示に失敗");
-  })
-  .then(() => db_operation_function.deleteTable());
+  .then(() => db_operation_function.deleteTable(deleteTableSql));

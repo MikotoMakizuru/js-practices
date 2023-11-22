@@ -8,13 +8,13 @@ const selectDataSql = "SELECT * FROM booka";
 const deleteTableSql = "DROP TABLE books";
 
 db_operation_function
-  .createTable(createTableSql)
-  .then(() => db_operation_function.insertRecord(insertRecordSql, booksTitle))
+  .promiseRun(createTableSql)
+  .then(() => db_operation_function.promiseRun(insertRecordSql, booksTitle))
   .catch((error) => {
     console.error("追加", error.message);
   })
-  .then(() => db_operation_function.selectData(selectDataSql))
+  .then(() => db_operation_function.promiseAll(selectDataSql))
   .catch((error) => {
     console.error("取得", error.message);
   })
-  .then(() => db_operation_function.deleteTable(deleteTableSql));
+  .then(() => db_operation_function.promiseRun(deleteTableSql));

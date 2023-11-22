@@ -8,13 +8,13 @@ const selectDataSql = "SELECT * FROM books";
 const deleteTableSql = "DROP TABLE books";
 
 db_operation_function
-  .createTable(createTableSql)
-  .then(() => db_operation_function.insertRecord(insertRecordSql, booksTitle))
+  .promiseRun(createTableSql)
+  .then(() => db_operation_function.promiseRun(insertRecordSql, booksTitle))
   .then((lastID) => {
     console.log(`ID: ${lastID}`);
   })
-  .then(() => db_operation_function.selectData(selectDataSql))
+  .then(() => db_operation_function.promiseAll(selectDataSql))
   .then((rows) => {
-    console.log(`${rows.id} ${rows.title}`);
+    rows.forEach((row) => console.log(`${row.id} ${row.title}`));
   })
-  .then(() => db_operation_function.deleteTable(deleteTableSql));
+  .then(() => db_operation_function.promiseRun(deleteTableSql));

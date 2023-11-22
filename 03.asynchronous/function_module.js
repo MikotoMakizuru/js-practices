@@ -2,17 +2,9 @@ import sqlite3 from "sqlite3";
 
 const db = new sqlite3.Database(":memory:");
 
-function createTable(createTableSql) {
-  return new Promise((resolve) => {
-    db.run(createTableSql, () => {
-      resolve();
-    });
-  });
-}
-
-function insertRecord(insertRecordSql, booksTitle) {
+function promiseRun(sql, bookTitle) {
   return new Promise((resolve, reject) => {
-    db.run(insertRecordSql, booksTitle, function (error) {
+    db.run(sql, bookTitle, function (error) {
       if (error) {
         reject(error);
       } else {
@@ -22,9 +14,9 @@ function insertRecord(insertRecordSql, booksTitle) {
   });
 }
 
-function selectData(selectDataSql) {
+function promiseAll(sql) {
   return new Promise((resolve, reject) => {
-    db.get(selectDataSql, function (error, rows) {
+    db.all(sql, function (error, rows) {
       if (error) {
         reject(error);
       } else {
@@ -34,12 +26,4 @@ function selectData(selectDataSql) {
   });
 }
 
-function deleteTable(deleteTableSql) {
-  return new Promise((resolve) => {
-    db.run(deleteTableSql, () => {
-      resolve();
-    });
-  });
-}
-
-export { createTable, insertRecord, selectData, deleteTable };
+export { promiseRun, promiseAll };

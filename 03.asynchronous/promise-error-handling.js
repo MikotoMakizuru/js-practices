@@ -1,20 +1,22 @@
-import * as db_operation_function from "./function_module.js";
+import { promiseRun, promiseAll } from "./db-operation.js";
+import sqlite3 from "sqlite3";
 
-const createTableSql =
-  "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)";
-const insertRecordSql = "INSERT INTO book (title) VALUES (?)";
-const booksTitle = "JavaScript Primer 迷わないための入門";
-const selectDataSql = "SELECT * FROM booka";
-const deleteTableSql = "DROP TABLE books";
-
-db_operation_function
-  .promiseRun(createTableSql)
-  .then(() => db_operation_function.promiseRun(insertRecordSql, booksTitle))
+const db = new sqlite3.Database(":memory:");
+promiseRun(
+  db,
+  "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)"
+)
+  .then(() =>
+    promiseRun(
+      db,
+      "INSERT INTO book (title) VALUES ('JavaScript Primer 迷わないための入門')"
+    )
+  )
   .catch((error) => {
     console.error("追加", error.message);
   })
-  .then(() => db_operation_function.promiseAll(selectDataSql))
+  .then(() => promiseAll(db, "SELECT * FROM booka"))
   .catch((error) => {
     console.error("取得", error.message);
   })
-  .then(() => db_operation_function.promiseRun(deleteTableSql));
+  .then(() => promiseRun(db, "DROP TABLE books"));

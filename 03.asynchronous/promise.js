@@ -8,8 +8,8 @@ promiseRun(
       "INSERT INTO books (title) VALUES ('JavaScript Primer 迷わないための入門')"
     )
   )
-  .then((lastID) => {
-    console.log(`ID: ${lastID}`);
+  .then((book) => {
+    console.log(`ID: ${book.lastID}`);
   })
   .then(() => promiseAll("SELECT * FROM books"))
   .then((rows) => {

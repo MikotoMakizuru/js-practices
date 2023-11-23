@@ -1,8 +1,4 @@
-import sqlite3 from "sqlite3";
-
-const db = new sqlite3.Database(":memory:");
-
-function promiseRun(sql) {
+function promiseRun(db, sql) {
   return new Promise((resolve, reject) => {
     db.run(sql, function (error) {
       if (error) {
@@ -14,7 +10,7 @@ function promiseRun(sql) {
   });
 }
 
-function promiseAll(sql, params) {
+function promiseAll(db, sql, params) {
   return new Promise((resolve, reject) => {
     db.all(sql, params, (error, rows) => {
       if (error) {

@@ -16,7 +16,7 @@ function promiseRun(sql) {
 
 function promiseAll(sql) {
   return new Promise((resolve, reject) => {
-    db.all(sql, function (error, rows) {
+    db.all(sql, (error, rows) => {
       if (error) {
         reject(error);
       } else {

@@ -1,4 +1,4 @@
-import { promiseRun, promiseAll } from "./function_module.js";
+import { promiseRun, promiseAll } from "./db_operation.js";
 
 promiseRun(
   "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)"

@@ -9,7 +9,8 @@ promiseRun(
   .then(() =>
     promiseRun(
       db,
-      "INSERT INTO book (title) VALUES ('JavaScript Primer 迷わないための入門')"
+      "INSERT INTO book (title) VALUES (?)",
+      "JavaScript Primer 迷わないための入門"
     )
   )
   .catch((error) => {

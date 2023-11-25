@@ -1,6 +1,6 @@
-function promiseRun(db, sql) {
+function promiseRun(db, sql, param) {
   return new Promise((resolve, reject) => {
-    db.run(sql, function (error) {
+    db.run(sql, param, function (error) {
       if (error) {
         reject(error);
       } else {
@@ -10,9 +10,9 @@ function promiseRun(db, sql) {
   });
 }
 
-function promiseAll(db, sql, params) {
+function promiseAll(db, sql, param) {
   return new Promise((resolve, reject) => {
-    db.all(sql, params, (error, rows) => {
+    db.all(sql, param, (error, rows) => {
       if (error) {
         reject(error);
       } else {

@@ -1,5 +1,5 @@
-import { promiseRun, promiseAll } from "./db-operation.js";
 import sqlite3 from "sqlite3";
+import { promiseRun, promiseAll } from "./db-operation.js";
 
 const db = new sqlite3.Database(":memory:");
 

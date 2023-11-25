@@ -7,20 +7,13 @@ db.run(
   () => {
     db.run(
       "INSERT INTO books (title) VALUES (?)",
-      "ゼロからわかるRuby超入門",
+      "JavaScript Primer 迷わないための入門",
       function () {
         console.log(`ID: ${this.lastID}`);
-        db.run(
-          "INSERT INTO books (title) VALUES (?)",
-          "プロを目指す人のためのRuby入門",
-          function () {
-            console.log(`ID: ${this.lastID}`);
-            db.all("SELECT * FROM books", (_error, rows) => {
-              rows.forEach((row) => console.log(`${row.id} ${row.title}`));
-              db.run("DROP TABLE books");
-            });
-          }
-        );
+        db.all("SELECT * FROM books", (_error, rows) => {
+          rows.forEach((row) => console.log(`${row.id} ${row.title}`));
+          db.run("DROP TABLE books");
+        });
       }
     );
   }

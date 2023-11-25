@@ -16,9 +16,9 @@ promiseRun(
   )
   .then((result) => {
     console.log(`ID: ${result.lastID}`);
+    return promiseAll(db, "SELECT * FROM books");
   })
-  .then(() => promiseAll(db, "SELECT * FROM books"))
   .then((rows) => {
     rows.forEach((row) => console.log(`${row.id} ${row.title}`));
-  })
-  .then(() => promiseRun(db, "DROP TABLE books"));
+    return promiseRun(db, "DROP TABLE books");
+  });

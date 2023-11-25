@@ -12,9 +12,11 @@ db.run(
         if (error) {
           console.error("追加", error.message);
         }
-        db.all("SELECT * FROM booka", (error) => {
+        db.all("SELECT * FROM books", (error) => {
           if (error) {
             console.error("取得", error.message);
+            db.run("DROP TABLE books");
+          } else {
             db.run("DROP TABLE books");
           }
         });

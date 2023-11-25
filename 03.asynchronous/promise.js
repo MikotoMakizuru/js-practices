@@ -14,8 +14,8 @@ promiseRun(
       "JavaScript Primer 迷わないための入門"
     )
   )
-  .then((book) => {
-    console.log(`ID: ${book.lastID}`);
+  .then((result) => {
+    console.log(`ID: ${result.lastID}`);
   })
   .then(() => promiseAll(db, "SELECT * FROM books"))
   .then((rows) => {

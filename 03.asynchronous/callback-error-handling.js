@@ -15,10 +15,8 @@ db.run(
         db.all("SELECT * FROM booka", (error) => {
           if (error) {
             console.error("取得", error.message);
-            db.run("DROP TABLE books");
-          } else {
-            db.run("DROP TABLE books");
           }
+          db.run("DROP TABLE books");
         });
       }
     );

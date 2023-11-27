@@ -15,14 +15,21 @@ async function main() {
       "JavaScript Primer 迷わないための入門"
     );
   } catch (error) {
-    console.error("追加", error.message);
+    if (error instanceof Error) {
+      console.error("追加", error.message);
+    } else {
+      throw error;
+    }
   }
   try {
     await promiseAll(db, "SELECT * FROM booka");
   } catch (error) {
-    console.error("取得", error.message);
+    if (error instanceof Error) {
+      console.error("取得", error.message);
+    } else {
+      throw error;
+    }
+    await promiseRun(db, "DROP TABLE books");
   }
-  await promiseRun(db, "DROP TABLE books");
 }
-
 main();

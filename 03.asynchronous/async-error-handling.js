@@ -32,4 +32,5 @@ async function main() {
   }
   await promiseRun(db, "DROP TABLE books");
 }
+
 main();

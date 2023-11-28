@@ -29,7 +29,7 @@ async function main() {
     } else {
       throw error;
     }
-    await promiseRun(db, "DROP TABLE books");
   }
+  await promiseRun(db, "DROP TABLE books");
 }
 main();

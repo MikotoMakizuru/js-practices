@@ -32,6 +32,7 @@ async function main() {
       const lines = await stdin();
       const title = await lines[0];
       const content = await lines.join("\n");
+
       await memo.createTable();
       await memo.insert(title, content);
       console.log(`✅ タイトル "${title}" のメモが追加されました。`);
@@ -45,6 +46,7 @@ async function main() {
   } else if (argv.l) {
     try {
       const rows = await memo.titleList();
+
       if (rows.length > 0) {
         rows.forEach((row) => {
           console.log(row.title);

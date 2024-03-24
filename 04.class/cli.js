@@ -45,7 +45,7 @@ async function main() {
     }
   } else if (argv.l) {
     try {
-      const rows = await memo.titleList();
+      const rows = await memo.fetchTitlesAndIds();
 
       if (rows.length > 0) {
         rows.forEach((row) => {
@@ -63,7 +63,7 @@ async function main() {
     }
   } else if (argv.r) {
     try {
-      const rows = await memo.titleList();
+      const rows = await memo.fetchTitlesAndIds();
 
       if (rows.length > 0) {
         const choices = await rows.map((row) => ({

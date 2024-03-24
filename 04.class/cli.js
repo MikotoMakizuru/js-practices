@@ -4,7 +4,7 @@ import Memo from "./memo.js";
 import Enquiry from "./enquiry.js";
 
 async function main() {
-  async function stdin() {
+  async function getStdin() {
     return new Promise((resolve) => {
       const lines = [];
       const reader = readline.createInterface({
@@ -29,7 +29,7 @@ async function main() {
 
   if (!process.stdin.isTTY) {
     try {
-      const lines = await stdin();
+      const lines = await getStdin();
       const title = await lines[0];
       const content = await lines.join("\n");
 

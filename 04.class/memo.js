@@ -8,7 +8,7 @@ export default class Memo {
   createTable() {
     return new Promise((resolve, reject) => {
       this.db.run(
-        "CREATE TABLE IF NOT EXISTS memos (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT)",
+        "CREATE TABLE IF NOT EXISTS memos (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT NOT NULL)",
         function (err) {
           if (!err) {
             resolve(this);

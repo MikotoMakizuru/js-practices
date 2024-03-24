@@ -10,7 +10,7 @@ export default class Enquiry {
     const question = {
       type: "select",
       name: "memoData",
-      message: `Choose a note you want to ${action} :`,
+      message: `Choose a memo you want to ${action} :`,
       choices: choices,
       result() {
         return this.focused.value;

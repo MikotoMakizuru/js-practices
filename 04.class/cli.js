@@ -66,12 +66,7 @@ async function main() {
       const memoTitlesAndIds = await memo.fetchTitlesAndIds();
 
       if (memoTitlesAndIds.length > 0) {
-        const choices = await memoTitlesAndIds.map((row) => ({
-          title: row.title,
-          value: { id: row.id, title: row.title },
-        }));
-
-        const answer = await enquiry.selectMemoData(choices);
+        const answer = await enquiry.selectMemoData(memoTitlesAndIds, "see");
         const selectedMemoData = await memo.select(answer.id);
         console.log(selectedMemoData.content);
       } else {
@@ -87,13 +82,9 @@ async function main() {
   } else if (argv.d) {
     try {
       const memoTitlesAndIds = await memo.fetchTitlesAndIds();
-      if (memoTitlesAndIds.length > 0) {
-        const choices = await memoTitlesAndIds.map((row) => ({
-          title: row.title,
-          value: { id: row.id, title: row.title },
-        }));
 
-        const answer = await enquiry.selectMemoData(choices);
+      if (memoTitlesAndIds.length > 0) {
+        const answer = await enquiry.selectMemoData(memoTitlesAndIds, "delete");
         await memo.delete(answer.id);
         console.log(`🗑️  タイトル "${answer.title}" のメモが削除されました。`);
       } else {

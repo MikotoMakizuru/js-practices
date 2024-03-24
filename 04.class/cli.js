@@ -45,10 +45,10 @@ async function main() {
     }
   } else if (argv.l) {
     try {
-      const rows = await memo.fetchTitlesAndIds();
+      const memoTitlesAndIds = await memo.fetchTitlesAndIds();
 
-      if (rows.length > 0) {
-        rows.forEach((row) => {
+      if (memoTitlesAndIds.length > 0) {
+        memoTitlesAndIds.forEach((row) => {
           console.log(row.title);
         });
       } else {
@@ -63,10 +63,10 @@ async function main() {
     }
   } else if (argv.r) {
     try {
-      const rows = await memo.fetchTitlesAndIds();
+      const memoTitlesAndIds = await memo.fetchTitlesAndIds();
 
-      if (rows.length > 0) {
-        const choices = await rows.map((row) => ({
+      if (memoTitlesAndIds.length > 0) {
+        const choices = await memoTitlesAndIds.map((row) => ({
           title: row.title,
           value: { id: row.id, title: row.title },
         }));
@@ -86,9 +86,9 @@ async function main() {
     }
   } else if (argv.d) {
     try {
-      const rows = await memo.titleList();
-      if (rows.length > 0) {
-        const choices = await rows.map((row) => ({
+      const memoTitlesAndIds = await memo.fetchTitlesAndIds();
+      if (memoTitlesAndIds.length > 0) {
+        const choices = await memoTitlesAndIds.map((row) => ({
           title: row.title,
           value: { id: row.id, title: row.title },
         }));

@@ -16,7 +16,12 @@ export default class MemoHandler {
         return this.focused.value;
       },
     };
-    const answer = await Enquirer.prompt(question);
-    return answer.memoData;
+
+    try {
+      const answer = await Enquirer.prompt(question);
+      return answer.memoData;
+    } catch (err) {
+      throw new Error("Error occurred while selecting memo data");
+    }
   }
 }

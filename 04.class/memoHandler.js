@@ -1,6 +1,6 @@
 import Enquirer from "enquirer";
 
-export default class Enquiry {
+export default class MemoHandler {
   async selectMemoData(memoTitlesAndIds, action) {
     const choices = await memoTitlesAndIds.map((row) => ({
       title: row.title,

@@ -1,7 +1,7 @@
 import minimist from "minimist";
 import readline from "readline";
 import Memo from "./memo.js";
-import Enquiry from "./enquiry.js";
+import MemoHandler from "./memoHandler.js";
 
 async function main() {
   async function getStdin() {
@@ -25,7 +25,7 @@ async function main() {
 
   const argv = minimist(process.argv.slice(2));
   const memo = new Memo();
-  const enquiry = new Enquiry();
+  const memoHandler = new MemoHandler();
 
   if (!process.stdin.isTTY) {
     try {
@@ -66,7 +66,10 @@ async function main() {
       const memoTitlesAndIds = await memo.fetchTitlesAndIds();
 
       if (memoTitlesAndIds.length > 0) {
-        const answer = await enquiry.selectMemoData(memoTitlesAndIds, "see");
+        const answer = await memoHandler.selectMemoData(
+          memoTitlesAndIds,
+          "see",
+        );
         const selectedMemoData = await memo.select(answer.id);
         console.log(selectedMemoData.content);
       } else {
@@ -84,7 +87,10 @@ async function main() {
       const memoTitlesAndIds = await memo.fetchTitlesAndIds();
 
       if (memoTitlesAndIds.length > 0) {
-        const answer = await enquiry.selectMemoData(memoTitlesAndIds, "delete");
+        const answer = await memoHandler.selectMemoData(
+          memoTitlesAndIds,
+          "delete",
+        );
         await memo.delete(answer.id);
         console.log(`🗑️  タイトル "${answer.title}" のメモが削除されました。`);
       } else {

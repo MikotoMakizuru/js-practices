@@ -4,25 +4,6 @@ import Memo from "./memo.js";
 import MemoHandler from "./memoHandler.js";
 
 async function main() {
-  async function getStdin() {
-    return new Promise((resolve) => {
-      const lines = [];
-      const reader = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-        terminal: false,
-      });
-
-      reader.on("line", (line) => {
-        lines.push(line);
-      });
-
-      reader.on("close", () => {
-        resolve(lines);
-      });
-    });
-  }
-
   const argv = minimist(process.argv.slice(2));
   const memo = new Memo();
   const memoHandler = new MemoHandler();
@@ -104,6 +85,25 @@ async function main() {
       }
     }
   }
+}
+
+async function getStdin() {
+  return new Promise((resolve) => {
+    const lines = [];
+    const reader = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+      terminal: false,
+    });
+
+    reader.on("line", (line) => {
+      lines.push(line);
+    });
+
+    reader.on("close", () => {
+      resolve(lines);
+    });
+  });
 }
 
 main();

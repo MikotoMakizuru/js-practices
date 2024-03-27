@@ -3,14 +3,15 @@ import readline from "readline";
 import Memo from "./memo.js";
 import MemoHandler from "./memoHandler.js";
 
+const argv = minimist(process.argv.slice(2));
+
 async function main() {
-  const argv = minimist(process.argv.slice(2));
   const memo = new Memo();
   const memoHandler = new MemoHandler();
 
   if (!process.stdin.isTTY || Object.keys(argv).length < 2) {
     try {
-      const lines = await getStdin();
+      const lines = await readStdin();
       const title = await lines[0];
       const content = await lines.join("\n");
 
@@ -87,16 +88,23 @@ async function main() {
   }
 }
 
-async function getStdin() {
+function readStdin() {
   return new Promise((resolve) => {
     const lines = [];
-    const reader = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
+    let reader;
+
+    if (!process.stdin.isTTY || Object.keys(argv).length < 2) {
+      reader = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+    } else {
+      reader = readline.createInterface({
+        input: process.stdin,
+      });
+    }
 
     reader.on("line", (line) => {
-      console.log(line);
       lines.push(line);
     });
 

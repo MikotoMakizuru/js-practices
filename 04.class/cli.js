@@ -8,7 +8,7 @@ async function main() {
   const memo = new Memo();
   const memoHandler = new MemoHandler();
 
-  if (!process.stdin.isTTY) {
+  if (!process.stdin.isTTY || Object.keys(argv).length < 2) {
     try {
       const lines = await getStdin();
       const title = await lines[0];
@@ -93,10 +93,10 @@ async function getStdin() {
     const reader = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
-      terminal: false,
     });
 
     reader.on("line", (line) => {
+      console.log(line);
       lines.push(line);
     });
 

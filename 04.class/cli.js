@@ -48,7 +48,10 @@ async function main() {
       const memos = await memo.fetchAll();
 
       if (memos.length > 0) {
-        const answer = await memoHandler.selectMemoData(memos, "see");
+        const answer = await memoHandler.selectMemoData(
+          memos,
+          "Choose a note you want to see:",
+        );
         const selectedMemoData = await memo.select(answer.id);
         console.log(selectedMemoData.content);
       } else {
@@ -66,7 +69,10 @@ async function main() {
       const memos = await memo.fetchAll();
 
       if (memos.length > 0) {
-        const answer = await memoHandler.selectMemoData(memos, "delete");
+        const answer = await memoHandler.selectMemoData(
+          memos,
+          "Choose a note you want to delete:",
+        );
         await memo.delete(answer.id);
         console.log(`🗑️  タイトル "${answer.title}" のメモが削除されました。`);
       } else {

@@ -1,7 +1,7 @@
 import Enquirer from "enquirer";
 
 export default class MemoHandler {
-  async selectMemoData(memos, action) {
+  async selectMemoData(memos, promptText) {
     const choices = await memos.map((memo) => ({
       title: memo.title,
       value: memo,
@@ -10,7 +10,7 @@ export default class MemoHandler {
     const question = {
       type: "select",
       name: "memoData",
-      message: `Choose a memo you want to ${action} :`,
+      message: `${promptText}`,
       choices: choices,
       result() {
         return this.focused.value;

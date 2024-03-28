@@ -48,7 +48,7 @@ async function main() {
       const memos = await memo.fetchAll();
 
       if (memos.length > 0) {
-        const answer = await memoHandler.selectMemoData(
+        const answer = await memoHandler.pickup(
           memos,
           "Choose a note you want to see:",
         );
@@ -69,7 +69,7 @@ async function main() {
       const memos = await memo.fetchAll();
 
       if (memos.length > 0) {
-        const answer = await memoHandler.selectMemoData(
+        const answer = await memoHandler.pickup(
           memos,
           "Choose a note you want to delete:",
         );

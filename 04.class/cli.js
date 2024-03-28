@@ -89,7 +89,7 @@ async function main() {
 }
 
 function readStdin() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const lines = [];
     let reader;
 
@@ -109,7 +109,11 @@ function readStdin() {
     });
 
     reader.on("close", () => {
-      resolve(lines);
+      if (!lines.every((line) => line.trim() === "")) {
+        resolve(lines);
+      } else {
+        reject(new Error("No input provided."));
+      }
     });
   });
 }

@@ -11,7 +11,7 @@ export default class MemoHandler {
       type: "select",
       name: "memoData",
       message: `${promptText}`,
-      choices: choices,
+      choices,
       result() {
         return this.focused.value;
       },

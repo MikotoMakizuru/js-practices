@@ -27,10 +27,10 @@ async function main() {
     }
   } else if (argv.l) {
     try {
-      const memoTitlesAndIds = await memo.fetchTitlesAndIds();
+      const memos = await memo.fetchAll();
 
-      if (memoTitlesAndIds.length > 0) {
-        memoTitlesAndIds.forEach((row) => {
+      if (memos.length > 0) {
+        memos.forEach((row) => {
           console.log(row.title);
         });
       } else {
@@ -45,13 +45,10 @@ async function main() {
     }
   } else if (argv.r) {
     try {
-      const memoTitlesAndIds = await memo.fetchTitlesAndIds();
+      const memos = await memo.fetchAll();
 
-      if (memoTitlesAndIds.length > 0) {
-        const answer = await memoHandler.selectMemoData(
-          memoTitlesAndIds,
-          "see",
-        );
+      if (memos.length > 0) {
+        const answer = await memoHandler.selectMemoData(memos, "see");
         const selectedMemoData = await memo.select(answer.id);
         console.log(selectedMemoData.content);
       } else {
@@ -66,13 +63,10 @@ async function main() {
     }
   } else if (argv.d) {
     try {
-      const memoTitlesAndIds = await memo.fetchTitlesAndIds();
+      const memos = await memo.fetchAll();
 
-      if (memoTitlesAndIds.length > 0) {
-        const answer = await memoHandler.selectMemoData(
-          memoTitlesAndIds,
-          "delete",
-        );
+      if (memos.length > 0) {
+        const answer = await memoHandler.selectMemoData(memos, "delete");
         await memo.delete(answer.id);
         console.log(`🗑️  タイトル "${answer.title}" のメモが削除されました。`);
       } else {

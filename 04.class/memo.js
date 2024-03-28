@@ -36,9 +36,9 @@ export default class Memo {
     });
   }
 
-  fetchTitlesAndIds() {
+  fetchAll() {
     return new Promise((resolve, reject) => {
-      this.db.all("SELECT id, title FROM memos ORDER BY id", (err, rows) => {
+      this.db.all("SELECT * FROM memos ORDER BY id", (err, rows) => {
         if (!err) {
           resolve(rows);
         } else {

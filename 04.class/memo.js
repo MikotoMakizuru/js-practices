@@ -38,9 +38,9 @@ export default class Memo {
 
   fetchAll() {
     return new Promise((resolve, reject) => {
-      this.db.all("SELECT * FROM memos ORDER BY id", (err, rows) => {
+      this.db.all("SELECT * FROM memos ORDER BY id", (err, memos) => {
         if (!err) {
-          resolve(rows);
+          resolve(memos);
         } else {
           reject(err);
         }
@@ -50,9 +50,9 @@ export default class Memo {
 
   select(id) {
     return new Promise((resolve, reject) => {
-      this.db.get("SELECT * FROM memos WHERE id = ?", [id], (err, rows) => {
+      this.db.get("SELECT * FROM memos WHERE id = ?", [id], (err, memo) => {
         if (!err) {
-          resolve(rows);
+          resolve(memo);
         } else {
           reject(err);
         }

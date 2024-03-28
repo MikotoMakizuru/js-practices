@@ -30,8 +30,8 @@ async function main() {
       const memos = await memo.fetchAll();
 
       if (memos.length > 0) {
-        memos.forEach((row) => {
-          console.log(row.title);
+        memos.forEach((memo) => {
+          console.log(memo.title);
         });
       } else {
         console.log("メモがありません");

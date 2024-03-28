@@ -1,10 +1,10 @@
 import Enquirer from "enquirer";
 
 export default class MemoHandler {
-  async selectMemoData(memoTitlesAndIds, action) {
-    const choices = await memoTitlesAndIds.map((row) => ({
-      title: row.title,
-      value: row,
+  async selectMemoData(memos, action) {
+    const choices = await memos.map((memo) => ({
+      title: memo.title,
+      value: memo,
     }));
 
     const question = {

@@ -12,8 +12,8 @@ async function main() {
   if (!process.stdin.isTTY || Object.keys(argv).length < 2) {
     try {
       const lines = await readStdin();
-      const title = await lines[0];
-      const content = await lines.join("\n");
+      const title = lines[0];
+      const content = lines.join("\n");
 
       await memo.createTable();
       await memo.insert(title, content);

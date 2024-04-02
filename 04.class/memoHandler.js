@@ -21,7 +21,7 @@ export default class MemoHandler {
       const answer = await Enquirer.prompt(question);
       return answer.memoData;
     } catch (err) {
-      throw new Error("Error occurred while selecting memo data");
+      throw new Error("Error occurred while choosing memo data");
     }
   }
 }

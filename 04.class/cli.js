@@ -52,8 +52,8 @@ async function main() {
           memos,
           "Choose a note you want to see:",
         );
-        const selectedMemoData = await memoAccessor.select(answer.id);
-        console.log(selectedMemoData.content);
+        const selectedMemo = await memoAccessor.select(answer.id);
+        console.log(selectedMemo.content);
       } else {
         console.log("メモがありません");
       }

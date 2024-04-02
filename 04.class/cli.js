@@ -93,16 +93,10 @@ function readStdin() {
     const lines = [];
     let reader;
 
-    if (!process.stdin.isTTY || Object.keys(argv).length < 2) {
-      reader = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      });
-    } else {
-      reader = readline.createInterface({
-        input: process.stdin,
-      });
-    }
+    reader = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
 
     reader.on("line", (line) => {
       lines.push(line);

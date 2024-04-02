@@ -50,7 +50,7 @@ async function main() {
       if (memos.length > 0) {
         const answer = await memoHandler.choose(
           memos,
-          "Choose a note you want to see:",
+          "Choose a memo you want to see:",
         );
         const selectedMemo = await memoAccessor.select(answer.id);
         console.log(selectedMemo.content);
@@ -71,7 +71,7 @@ async function main() {
       if (memos.length > 0) {
         const answer = await memoHandler.choose(
           memos,
-          "Choose a note you want to delete:",
+          "Choose a memo you want to delete:",
         );
         await memoAccessor.delete(answer.id);
         console.log(`🗑️  タイトル "${answer.title}" のメモが削除されました。`);

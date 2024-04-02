@@ -27,7 +27,7 @@ async function main() {
     }
   } else if (argv.l) {
     try {
-      const memos = await memoAccessor.fetchAll();
+      const memos = await memoAccessor.selectAll();
 
       if (memos.length > 0) {
         memos.forEach((memo) => {
@@ -45,7 +45,7 @@ async function main() {
     }
   } else if (argv.r) {
     try {
-      const memos = await memoAccessor.fetchAll();
+      const memos = await memoAccessor.selectAll();
 
       if (memos.length > 0) {
         const answer = await memoHandler.pickup(
@@ -66,7 +66,7 @@ async function main() {
     }
   } else if (argv.d) {
     try {
-      const memos = await memoAccessor.fetchAll();
+      const memos = await memoAccessor.selectAll();
 
       if (memos.length > 0) {
         const answer = await memoHandler.pickup(

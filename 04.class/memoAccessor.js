@@ -36,7 +36,7 @@ export default class MemoAccessor {
     });
   }
 
-  fetchAll() {
+  selectAll() {
     return new Promise((resolve, reject) => {
       this.db.all("SELECT * FROM memos ORDER BY id", (err, memos) => {
         if (!err) {

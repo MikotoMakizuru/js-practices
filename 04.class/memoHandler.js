@@ -1,7 +1,7 @@
 import Enquirer from "enquirer";
 
 export default class MemoHandler {
-  async pickup(memos, promptText) {
+  async choose(memos, promptText) {
     const choices = memos.map((memo) => ({
       title: memo.title,
       value: memo,

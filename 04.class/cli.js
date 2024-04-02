@@ -1,12 +1,12 @@
 import minimist from "minimist";
 import readline from "readline";
-import Memo from "./memo.js";
+import MemoAccessor from "./memoAccessor.js";
 import MemoHandler from "./memoHandler.js";
 
 const argv = minimist(process.argv.slice(2));
 
 async function main() {
-  const memo = new Memo();
+  const memoAccessor = new MemoAccessor();
   const memoHandler = new MemoHandler();
 
   if (!process.stdin.isTTY || Object.keys(argv).length < 2) {
@@ -15,8 +15,8 @@ async function main() {
       const title = lines[0];
       const content = lines.join("\n");
 
-      await memo.createTable();
-      await memo.insert(title, content);
+      await memoAccessor.createTable();
+      await memoAccessor.insert(title, content);
       console.log(`✅ タイトル "${title}" のメモが追加されました。`);
     } catch (err) {
       if (err instanceof Error) {
@@ -27,7 +27,7 @@ async function main() {
     }
   } else if (argv.l) {
     try {
-      const memos = await memo.fetchAll();
+      const memos = await memoAccessor.fetchAll();
 
       if (memos.length > 0) {
         memos.forEach((memo) => {
@@ -45,14 +45,14 @@ async function main() {
     }
   } else if (argv.r) {
     try {
-      const memos = await memo.fetchAll();
+      const memos = await memoAccessor.fetchAll();
 
       if (memos.length > 0) {
         const answer = await memoHandler.pickup(
           memos,
           "Choose a note you want to see:",
         );
-        const selectedMemoData = await memo.select(answer.id);
+        const selectedMemoData = await memoAccessor.select(answer.id);
         console.log(selectedMemoData.content);
       } else {
         console.log("メモがありません");
@@ -66,14 +66,14 @@ async function main() {
     }
   } else if (argv.d) {
     try {
-      const memos = await memo.fetchAll();
+      const memos = await memoAccessor.fetchAll();
 
       if (memos.length > 0) {
         const answer = await memoHandler.pickup(
           memos,
           "Choose a note you want to delete:",
         );
-        await memo.delete(answer.id);
+        await memoAccessor.delete(answer.id);
         console.log(`🗑️  タイトル "${answer.title}" のメモが削除されました。`);
       } else {
         console.log("メモがありません");

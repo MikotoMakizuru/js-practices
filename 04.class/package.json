@@ -1,5 +1,5 @@
 {
-  "name": "memo-app",
+  "name": "04.class",
   "scripts": {
     "fix": "prettier --write . && eslint --fix .",
     "lint": "prettier --check . && eslint ."

@@ -1,14 +1,8 @@
 import sqlite3 from "sqlite3";
-import fs from "fs";
 
 export default class MemoAccessor {
   constructor() {
-    const dbPath = "./DB/memo.sqlite3";
-
-    if (!fs.existsSync("./DB")) {
-      fs.mkdirSync("./DB");
-    }
-    this.db = new sqlite3.Database(dbPath);
+    this.db = new sqlite3.Database("./DB/memo.sqlite3");
     this.db.serialize(() => {
       this.createTable();
     });

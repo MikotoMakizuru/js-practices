@@ -9,6 +9,9 @@ export default class MemoAccessor {
       fs.mkdirSync("./DB");
     }
     this.db = new sqlite3.Database(dbPath);
+    this.db.serialize(() => {
+      this.createTable();
+    });
   }
 
   createTable() {

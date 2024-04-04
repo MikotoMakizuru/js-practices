@@ -15,7 +15,6 @@ async function main() {
       const title = lines[0];
       const content = lines.join("\n");
 
-      await memoAccessor.createTable();
       await memoAccessor.insert(title, content);
       console.log(`✅ タイトル "${title}" のメモが追加されました。`);
     } catch (err) {

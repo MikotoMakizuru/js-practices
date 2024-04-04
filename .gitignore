@@ -114,7 +114,7 @@ dist
 .dynamodb/
 
 # sqlite3 Local files
-.sqlite3
+*.sqlite3
 
 # TernJS port file
 .tern-port

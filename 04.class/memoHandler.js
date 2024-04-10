@@ -9,7 +9,7 @@ export default class MemoHandler {
 
     const question = {
       type: "select",
-      name: "memoData",
+      name: "memos",
       message: `${promptText}`,
       choices,
       result() {
@@ -19,7 +19,7 @@ export default class MemoHandler {
 
     try {
       const answer = await Enquirer.prompt(question);
-      return answer.memoData;
+      return answer.memos;
     } catch (err) {
       throw new Error("Error occurred while choosing memo data");
     }

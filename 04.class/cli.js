@@ -102,7 +102,7 @@ function readStdin() {
     });
 
     reader.on("close", () => {
-      if (!lines.every((line) => line.trim() === "")) {
+      if (lines.some((line) => line.trim().length > 0)) {
         resolve(lines);
       } else {
         reject(new Error("No input provided."));

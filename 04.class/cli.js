@@ -3,11 +3,11 @@ import readline from "readline";
 import MemoAccessor from "./memoAccessor.js";
 import MemoHandler from "./memoHandler.js";
 
-const argv = minimist(process.argv.slice(2));
-
 async function main() {
   const memoAccessor = new MemoAccessor();
   const memoHandler = new MemoHandler();
+
+  const argv = minimist(process.argv.slice(2));
 
   if (!process.stdin.isTTY || Object.keys(argv).length < 2) {
     try {

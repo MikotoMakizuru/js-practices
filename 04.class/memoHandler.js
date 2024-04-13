@@ -10,7 +10,7 @@ export default class MemoHandler {
     const question = {
       type: "select",
       name: "memos",
-      message: `${promptText}`,
+      message: promptText,
       choices,
       result() {
         return this.focused.value;

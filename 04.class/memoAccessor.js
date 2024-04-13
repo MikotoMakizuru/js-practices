@@ -22,7 +22,7 @@ export default class MemoAccessor {
 
   async insert(title, content) {
     await this.createTable();
-    return await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.db.run(
         "INSERT INTO memos (title, content) VALUES (?, ?)",
         [title, content],
@@ -39,7 +39,7 @@ export default class MemoAccessor {
 
   async selectAll() {
     await this.createTable();
-    return await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.db.all("SELECT * FROM memos ORDER BY id", (err, memos) => {
         if (!err) {
           resolve(memos);

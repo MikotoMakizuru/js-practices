@@ -15,6 +15,7 @@ async function main() {
       const title = lines[0];
       const content = lines.join("\n");
 
+      await memoAccessor.createTable();
       await memoAccessor.insert(title, content);
       console.log(`✅ タイトル "${title}" のメモが追加されました。`);
     } catch (err) {
@@ -26,6 +27,7 @@ async function main() {
     }
   } else if (argv.l) {
     try {
+      await memoAccessor.createTable();
       const memos = await memoAccessor.selectAll();
 
       if (memos.length > 0) {
@@ -44,6 +46,7 @@ async function main() {
     }
   } else if (argv.r) {
     try {
+      await memoAccessor.createTable();
       const memos = await memoAccessor.selectAll();
 
       if (memos.length > 0) {
@@ -65,6 +68,7 @@ async function main() {
     }
   } else if (argv.d) {
     try {
+      await memoAccessor.createTable();
       const memos = await memoAccessor.selectAll();
 
       if (memos.length > 0) {

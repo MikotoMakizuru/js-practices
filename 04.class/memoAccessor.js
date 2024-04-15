@@ -48,18 +48,6 @@ export default class MemoAccessor {
     });
   }
 
-  select(id) {
-    return new Promise((resolve, reject) => {
-      this.db.get("SELECT * FROM memos WHERE id = ?", [id], (err, memo) => {
-        if (!err) {
-          resolve(memo);
-        } else {
-          reject(err);
-        }
-      });
-    });
-  }
-
   delete(id) {
     return new Promise((resolve, reject) => {
       this.db.run("DELETE FROM memos WHERE id = ?", [id], function (err) {

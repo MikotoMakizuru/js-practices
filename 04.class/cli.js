@@ -50,11 +50,10 @@ async function main() {
       const memos = await memoAccessor.selectAll();
 
       if (memos.length > 0) {
-        const answer = await memoHandler.choose(
+        const selectedMemo = await memoHandler.choose(
           memos,
           "Choose a memo you want to see:",
         );
-        const selectedMemo = await memoAccessor.select(answer.id);
         console.log(selectedMemo.content);
       } else {
         console.log("メモがありません");

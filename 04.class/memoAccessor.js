@@ -20,7 +20,7 @@ export default class MemoAccessor {
     });
   }
 
-  async insert(title, content) {
+  insert(title, content) {
     return new Promise((resolve, reject) => {
       this.db.run(
         "INSERT INTO memos (title, content) VALUES (?, ?)",
@@ -36,7 +36,7 @@ export default class MemoAccessor {
     });
   }
 
-  async selectAll() {
+  selectAll() {
     return new Promise((resolve, reject) => {
       this.db.all("SELECT * FROM memos ORDER BY id", (err, memos) => {
         if (!err) {

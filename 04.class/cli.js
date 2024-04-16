@@ -71,12 +71,14 @@ async function main() {
       const memos = await memoAccessor.selectAll();
 
       if (memos.length > 0) {
-        const answer = await memoHandler.choose(
+        const selectedMemo = await memoHandler.choose(
           memos,
           "Choose a memo you want to delete:",
         );
-        await memoAccessor.delete(answer.id);
-        console.log(`🗑️  タイトル "${answer.title}" のメモが削除されました。`);
+        await memoAccessor.delete(selectedMemo.id);
+        console.log(
+          `🗑️  タイトル "${selectedMemo.title}" のメモが削除されました。`,
+        );
       } else {
         console.log("メモがありません");
       }
